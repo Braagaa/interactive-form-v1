@@ -399,6 +399,8 @@ $(form).on('submit',function(event) {
 	$([name, email, design, activities, payment])  //get all required elements needed for validation
 		.filter((i, elm) => !elm.validated)        //select the elements that have a false validated property
 		.reduce(submitValidation, [])              //abstract information (id, index and associated validation function for each element)
-		.each(() => event.preventDefault())        //preventDefault
 		.each((i, [elm, validation, index]) => validation(index, elm))  //run the validation
+		.first()
+		.each(() => event.preventDefault())        //preventDefault
+		.each(() => window.scrollTo(0, 0))
 });
